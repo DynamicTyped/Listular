@@ -1,0 +1,73 @@
+<html ng-app='app'>
+<head>
+	<style>
+		.filter { float:left; width: 300px; }
+		.sort { margin-left:300px;}
+		.sort ul { padding: 0px;}
+		.sort li{
+			list-style-type:none; 
+			max-width: 100px;
+			display:inline;
+			margin-left:10px;
+			border-radius: 5px;
+			padding:5px;
+		}
+		.sort .selected { background-color: #EDEDED;}
+		.sort li.selected:after, .sort li.selected:before{
+			padding-left:5px;
+			font-family:sans-serif;
+			font-size:12px;
+		}
+		.sort li.selected:after{
+			content: '˄';
+		}
+
+		.sort li.selected.reverse:after{
+			content: '˅';
+		}
+
+	
+	</style>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.min.js"></script>
+	<script src="src/listular.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('app', ['listular']);
+		
+	</script>
+	<script type="text/javascript">
+	//we can pretend that this is the data that would be converted to json in our typical razor view.
+	var listProperties = {
+		data: [
+	      {name: 'Satya Nadella', company: 'Microsoft'},
+	      {name: 'Shantanu Narayen', company: "Adobe Systems"},
+	      {name: 'Jeff Bezos', company: 'Amazon'},
+	      {name: 'Rory Read', company: 'AMD'},
+	      {name:'Steven Elop', company: 'Nokia'},
+	      {name:'Alan Mulally', company: 'Ford'},
+	      {name:'Tim Cook', company: 'Apple'},
+	      {name:'Michael Dell', company: 'Dell'},
+	      {name:'Mark Zuckerberg', company: 'Facebook'},
+	      {name:'Mikael Ohlsson', company: 'IKEA'},
+	      {name:'Paul Otellini', company: 'Intel'},
+	      {name:'Mitchell Baker', company: 'Mozilla'},
+	      {name:'Satoru Iwata', company: 'Nintendo'},
+	      {name:'Larry Ellison', company: 'Oracle'},
+	      {name:'Howard Schultz', company: 'Starbucks'},
+	      {name:'Gabe Newell', company: 'Valve'},
+	    ],
+	     sortFields: ['name', 'company'],
+	     templateUrl: "template/person.html",
+	     showFilter: true,
+	     showNextPrevious: true,
+	     showPageSize: true 
+	};	
+
+
+	</script>
+<body>
+	<div list data="listProperties" templateurl="template/person.html" show-filter="true" show-next-previous="true" show-page-size="true"></div>
+</body>
+</html>
