@@ -22,7 +22,7 @@ And you want to render this list in a typical `ng-repeat` but you also want pagi
 1. Add listular.js as a reference to your project `<script src="listular.js"></script>`
 2. Inject into your angular app `var app = angular.module('app', ['listular']);` 
 3. Create JavaScript object with Listular properties and data array `var listProperties = { data: [...], sortFields:[...]};`
-4. Add listular directive to your page `<div list data="listProperties" templateurl="template/person.html"></div>`
+4. Add listular directive to your page `var app = angular.module('app', ['listular']);`
 
 ##Customization##
 
