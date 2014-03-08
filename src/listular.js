@@ -22,7 +22,7 @@ app.value('filterTemplate', {
 
 
 app.value('sortTemplate', {
-    template: '<div class="sort" ng-show="showSort"><ul><li ng-repeat="sortItem in sortFields" ng-class="sortClass(sortItem)"><a href="#" ng-click="changeSortField(sortItem)">{{sortItem}}</li></ul></div>',
+    template: '<div class="sort" ng-show="showSort"><ul><li ng-repeat="sortItem in sortFields" ng-class="sortClass(sortItem)"><a href="#" ng-click="changeSortField(sortItem)">{{sortItem}}</a></li></ul></div>',
     templateUrl: ''
 });
 
@@ -50,11 +50,18 @@ app.value('nextPreviousTemplate', {
                          '</div>',
     templateUrl: ''
 });
-''
-app.service('templates',['filterTemplate', 'sortTemplate', 'repeatTemplate', 'nextPreviousTemplate', function(filterTemplate, sortTemplate, repeatTemplate, nextPreviousTemplate){
-    this.getTemplates = function(){
-       return filterTemplate.template + sortTemplate.template + repeatTemplate.template + nextPreviousTemplate.template;
+
+app.factory('templates',['filterTemplate', 'sortTemplate', 'repeatTemplate', 'nextPreviousTemplate', function(filterTemplate, sortTemplate, repeatTemplate, nextPreviousTemplate){
+    var getTemplate = function(item){
+        return item.templateUrl !=  "" ? "<div ng-include='" + item.templateUrl + "'></div> " : item.template; 
     }
+
+    return {
+       getTemplates: function(){
+           return getTemplate(filterTemplate) + getTemplate(sortTemplate) + getTemplate(repeatTemplate) + getTemplate(nextPreviousTemplate);
+        }
+    };
+
 }]);
 
 app.directive('list', ['$filter', 'templates', function ($filter, templates) {
