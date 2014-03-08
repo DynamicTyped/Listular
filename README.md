@@ -93,14 +93,30 @@ There is no default style with Listular. You define the styles of listular to ma
 </script>
 ...
 <body>
-	<div list data="listProperties"></div>
+	<div list properties="listProperties"></div>
 </body>
 
 ```
 
+It's also possible to pass the data from a standard ng-controller instead of the properties object (you can still pass in a properties object for everything else). 
+
+```
+	var app = angular.module('app', ['listular']);
+	
+	app.controller('testCtrl', ['$scope', function($scope){
+		$scope.listData = [
+      {name: 'Satya Nadella', company: 'Microsoft'},
+      {name:'Michael Dell', company: 'Dell'},
+      {name:'Mark Zuckerberg', company: 'Facebook'},
+      {name:'Mikael Ohlsson', company: 'IKEA'}];
+	}]);
+```
+
+```
+	<div list data="listData" properties="listProperties"></div>
+```
 
 ##Roadmap##
-1. Data from controllers instead of random JavaScript object
 1. Unit tests
 1. Show page number
 1. Infinite scroll
