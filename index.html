@@ -36,6 +36,13 @@
 	<script type="text/javascript">
 		var app = angular.module('app', ['listular']);
 		
+		app.controller('testCtrl', ['$scope', function($scope){
+			$scope.listData = [
+	      {name: 'Satya Nadella', company: 'Microsoft'},
+	      {name:'Michael Dell', company: 'Dell'},
+	      {name:'Mark Zuckerberg', company: 'Facebook'},
+	      {name:'Mikael Ohlsson', company: 'IKEA'}];
+		}]);
 	</script>
 	<script type="text/javascript">
 	//we can pretend that this is the data that would be converted to json in our typical razor view.
@@ -65,13 +72,13 @@
 	     showPageSize: true 
 	};	
 
-app.value('sortTemplate', {
-    template: '',
-    templateUrl: '"/template/sort.html"'
-});
+	app.value('sortTemplate', {
+	    template: '',
+	    templateUrl: '"/template/sort.html"'
+	});
 
 	</script>
-<body>
-	<div list data="listProperties" templateurl="template/person.html" show-filter="true" show-next-previous="true" show-page-size="true"></div>
+<body ng-controller="testCtrl">
+	<div list properties="listProperties" templateurl="template/person.html" show-filter="true" show-next-previous="true" show-page-size="true"></div>
 </body>
 </html>

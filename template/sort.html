@@ -1,0 +1,8 @@
+<div class="sort" ng-show="showSort">
+	<ul>
+		<li ng-repeat="sortItem in sortFields" ng-class="sortClass(sortItem)">
+			<a href="#" ng-click="changeSortField(sortItem)">{{sortItem}}</a> 
+		</li>
+	</ul>
+	<small>Template from URL (see template/sort.html)</small>
+</div>

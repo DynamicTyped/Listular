@@ -1,0 +1,12 @@
+<div ng-show="showNextPrevious" class="paging">
+	<small>Template from URL</small>
+    <button ng-click="first()">&lt;&lt;</button>
+        <button ng-click="prev()">&lt;</button>
+        <select ng-model="pageSize" ng-show="showPageSize">
+            <option>3</option>
+            <option>5</option>
+            <option>8</option>
+        </select>
+        <button ng-click="next()">&gt;</button>
+        <button ng-click="last()">&gt;&gt;</button>
+</div>

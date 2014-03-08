@@ -1,0 +1,7 @@
+<div ng-repeat="item in filteredData | orderBy:sortField:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize" class="listrepeat">
+	<small>Template from URL</small>
+   <div ng-switch on="templateurl">
+        <div ng-switch-when="">{{item}}</div>
+        <div ng-switch-default><div ng-include="templateurl" class="list-row"></div></div>
+    </div>
+</div>

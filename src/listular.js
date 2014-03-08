@@ -67,6 +67,7 @@ app.factory('templates',['filterTemplate', 'sortTemplate', 'repeatTemplate', 'ne
 app.directive('list', ['$filter', 'templates', function ($filter, templates) {
     return {
         template: templates.getTemplates(),
+        scope: { data:"=?"},
         link: function (scope, elem, attrs) {
             //defaults
             scope.templateurl = "";
@@ -80,17 +81,17 @@ app.directive('list', ['$filter', 'templates', function ($filter, templates) {
             scope.sortField = "name";
             scope.sortReverse = false;
 
-            if ('undefined' != typeof attrs["data"]) {
+            if ('undefined' != typeof attrs["properties"]) {
                 //do something to make it so we can pass this in on scope as well
-                scope.data = window[attrs["data"]].data;
+                scope.data = scope.data || window[attrs["properties"]].data;
                 scope.filteredData = scope.data;
-                scope.sortFields = window[attrs["data"]].sortFields;
-                scope.templateUrl = window[attrs["data"]].templateUrl || "";
-                scope.showPageSize = window[attrs["data"]].showPageSize || scope.showPageSize; 
-                scope.showNextPrevious = window[attrs["data"]].showNextPrevious || scope.showNextPrevious; 
-                scope.showFilter = window[attrs["data"]].showFilter || scope.showFilter; 
-                scope.showSort = window[attrs["data"]].showSort || scope.showSort; 
-                scope.sortField = window[attrs["data"]].sortField || scope.sortField; 
+                scope.sortFields = window[attrs["properties"]].sortFields;
+                scope.templateUrl = window[attrs["properties"]].templateUrl || "";
+                scope.showPageSize = window[attrs["properties"]].showPageSize || scope.showPageSize; 
+                scope.showNextPrevious = window[attrs["properties"]].showNextPrevious || scope.showNextPrevious; 
+                scope.showFilter = window[attrs["properties"]].showFilter || scope.showFilter; 
+                scope.showSort = window[attrs["properties"]].showSort || scope.showSort; 
+                scope.sortField = window[attrs["properties"]].sortField || scope.sortField; 
             }
 
             if ('undefined' != typeof attrs["templateurl"]) {
